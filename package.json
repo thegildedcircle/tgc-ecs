@@ -1,0 +1,26 @@
+{
+  "name": "tgc-ecs",
+  "version": "1.0.0",
+  "description": "The Entity-Component-System framework that powers The Gilded Circle.",
+  "main": "dist/index.js",
+  "scripts": {
+    "build": "parcel build index.js --target node -d dist --global ECS",
+    "build:dev": "parcel build index.js --target node -d .dev",
+    "test": "npm run build:dev && npx mocha ./tests/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thegildedcircle/tgc-ecs.git"
+  },
+  "author": "",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/thegildedcircle/tgc-ecs/issues"
+  },
+  "homepage": "https://github.com/thegildedcircle/tgc-ecs#readme",
+  "devDependencies": {
+    "chai": "^4.2.0",
+    "mocha": "^6.0.2",
+    "parcel-bundler": "^1.11.0"
+  }
+}
