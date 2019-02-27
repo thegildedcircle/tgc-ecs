@@ -1,3 +1,10 @@
 module.exports = {
-  plugins: ["plugins/markdown"]
+  tags: {
+    allowUnknownTags: true,
+    dictionaries: ["jsdoc"]
+  },
+  plugins: ["plugins/markdown"],
+  opts: {
+    template: "./node_modules/minami"
+  }
 };
