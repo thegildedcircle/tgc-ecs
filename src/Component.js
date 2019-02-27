@@ -1,19 +1,7 @@
 /**
  * ECS.Component
- * @module ECS/Component
- */
-
-/**
- * @typedef {Object} Component
+ * @module Component
  * 
- * @property {string}   name    - .
- * @property {boolean}  unique  - .
- * @property {Object}   state   - .
- * @property {function} update  - .
- * 
- */
-
-/**
  * @param   {string}  name      - The name of the component.
  * @param   {bool}    unique    - Whether or not a component can have more than one instance of this component.
  * @param   {Object}  defaults  - The default state of every instance of this component.
@@ -21,6 +9,14 @@
  * @return  {Function(Object): Component} Returns a constructor for the new component. The returned
  * constructor optionally takes a `init` object to initialise the component with
  * values different from the component defaults described above.
+ * 
+ * ```js
+ * const HealthComponent = Component('health', true, { value: 100 }) 
+ * // HealthComponent is now a function:
+ * // (init = {}) => ({ name: 'health', unique: true, state: { value: 100 } })
+ * 
+ * HealthComponent({ value: 200 }) // ({ name: 'health', unique: true, state: { value: 200 } })
+ * ```
  *
  * @description A generic function used to create new components. Most typically
  * used when registering a new component to an ECS.Manager with `ECS.Manager.registerComponent(...)`.
@@ -56,6 +52,15 @@ module.exports = (name, unique, defaults) => (init = {}) => {
     state[key] = init.hasOwnProperty(key) ? init[key] : defaults[key];
   }
 
+  /**
+   * @typedef {Object} Component
+   * 
+   * @property {string}   name    - .
+   * @property {boolean}  unique  - .
+   * @property {Object}   state   - .
+   * @property {function} update  - .
+   * 
+   */
   return {
     name,
     unique,
@@ -66,6 +71,12 @@ module.exports = (name, unique, defaults) => (init = {}) => {
     // with the new value, if not then internal state remains unchanged. This
     // enables the possibility of supplying only the necessary parts of updated
     // state instead of the whole object.
+    /**
+     * @function update
+     * @memberof Component
+     * 
+     * @param {Object} state - .
+     */
     update(state) {
       for (const key in this.state) {
         this.state[key] = state.hasOwnProperty(key) ?
