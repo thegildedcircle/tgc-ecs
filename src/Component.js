@@ -26,17 +26,17 @@
  * const { Component, Manager } = require('ECS')
  *
  * // Create a component to track the health of an entity
- * const HealthComponent = ECS.Component('health', true {
+ * const HealthComponent = Component('health', true {
  *   value: 100
  * })
  * // Register that component with the ECS Manager
- * ECS.Manager.registerComponent(HealthComponent)
+ * Manager.registerComponent(HealthComponent)
  *
  * // Create a new entity that has our health component
- * ECS.Manager.addEntity([ 'health' ])
+ * Manager.addEntity([ 'health' ])
  * // Create a new entity that overrides the default health value
- * ECS.Manager.addEntity([
- *   ECS.Manager.components.health({ value: 200 })
+ * Manager.addEntity([
+ *   Manager.components.health({ value: 200 })
  * ])
  * ```
  */
