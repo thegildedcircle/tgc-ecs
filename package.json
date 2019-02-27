@@ -21,6 +21,7 @@
   "homepage": "https://github.com/thegildedcircle/tgc-ecs#readme",
   "devDependencies": {
     "chai": "^4.2.0",
+    "minami": "^1.2.3",
     "mocha": "^6.0.2",
     "parcel-bundler": "^1.11.0"
   }
