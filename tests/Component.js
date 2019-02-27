@@ -40,8 +40,6 @@ describe("Component test suite", () => {
     it(`Should not add a stamina property`, () => {
       AttributeComponent.update({ stamina: 100 });
 
-      expect(AttributeComponent.state.health).to.equal(100);
-      expect(AttributeComponent.state.mana).to.equal(200);
       expect(AttributeComponent.state.stamina).to.be.undefined;
     });
   });
