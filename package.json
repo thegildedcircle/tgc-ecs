@@ -21,8 +21,14 @@
   "homepage": "https://github.com/thegildedcircle/tgc-ecs#readme",
   "devDependencies": {
     "chai": "^4.2.0",
+    "husky": "^1.3.1",
     "minami": "^1.2.3",
     "mocha": "^6.0.2",
     "parcel-bundler": "^1.11.0"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "npm run test"
+    }
   }
 }
