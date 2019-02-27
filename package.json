@@ -2,10 +2,10 @@
   "name": "tgc-ecs",
   "version": "1.0.0",
   "description": "The Entity-Component-System framework that powers The Gilded Circle.",
-  "main": "dist/index.js",
+  "main": "index.js",
   "scripts": {
-    "build": "parcel build index.js --target node -d dist --global ECS",
-    "build:dev": "parcel build index.js --target node -d .dev",
+    "build": "parcel build src/* --target node -d ECS --no-source-maps",
+    "build:dev": "parcel build src/* --target node -d .dev",
     "test": "npm run build:dev && npx mocha ./tests/index.js"
   },
   "repository": {
