@@ -4,14 +4,21 @@
  */
 
 /**
- * @name Component
- * @function
- *
+ * @typedef {Object} Component
+ * 
+ * @property {string}   name    - .
+ * @property {boolean}  unique  - .
+ * @property {Object}   state   - .
+ * @property {function} update  - .
+ * 
+ */
+
+/**
  * @param   {string}  name      - The name of the component.
  * @param   {bool}    unique    - Whether or not a component can have more than one instance of this component.
  * @param   {Object}  defaults  - The default state of every instance of this component.
  *
- * @return  {Function} Returns a constructor for the new component. The returned
+ * @return  {Function(Object): Component} Returns a constructor for the new component. The returned
  * constructor optionally takes a `init` object to initialise the component with
  * values different from the component defaults described above.
  *
@@ -61,9 +68,9 @@ module.exports = (name, unique, defaults) => (init = {}) => {
     // state instead of the whole object.
     update(state) {
       for (const key in this.state) {
-        this.state[key] = state.hasOwnProperty(key)
-          ? state[key]
-          : this.state[key];
+        this.state[key] = state.hasOwnProperty(key) ?
+          state[key] :
+          this.state[key];
       }
     }
   };
