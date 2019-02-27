@@ -25,14 +25,12 @@ describe("ECS test suite", () => {
   describe("Component update", () => {
     const AttributeComponent = Component("attrs", true, {
       health: 100,
-      mana: 100,
-      stamina: 100
+      mana: 100
     })();
 
-    it(`Should create a Component with "health", "mana", and "stamina" values defauled to 100`, () => {
+    it(`Should create a Component with "health" and "mana" values defauled to 100`, () => {
       expect(AttributeComponent.state.health).to.equal(100);
       expect(AttributeComponent.state.mana).to.equal(100);
-      expect(AttributeComponent.state.stamina).to.equal(100);
     });
 
     it(`Should update only "mana" to 200`, () => {
@@ -40,7 +38,14 @@ describe("ECS test suite", () => {
 
       expect(AttributeComponent.state.health).to.equal(100);
       expect(AttributeComponent.state.mana).to.equal(200);
-      expect(AttributeComponent.state.stamina).to.equal(100);
+    });
+
+    it(`Should not add a stamina property`, () => {
+      AttributeComponent.update({ stamina: 100 });
+
+      expect(AttributeComponent.state.health).to.equal(100);
+      expect(AttributeComponent.state.mana).to.equal(200);
+      expect(AttributeComponent.state.stamina).to.be.undefined;
     });
   });
 });
