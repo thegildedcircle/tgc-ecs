@@ -1,12 +1,9 @@
 const { expect } = require("chai");
 
-const Entity = require("../.dev/Entity");
 const Component = require("../.dev/Component");
-const System = require("../.dev/System");
-const Manager = require("../.dev/Manager");
 
-describe("ECS test suite", () => {
-  describe("Component construction", () => {
+describe("Component test suite", () => {
+  describe("Construction...", () => {
     const HealthComponent = Component("health", true, { value: 100 })();
 
     it(`Should create a Component called "health"`, () => {
@@ -22,7 +19,7 @@ describe("ECS test suite", () => {
     });
   });
 
-  describe("Component update", () => {
+  describe("Updates...", () => {
     const AttributeComponent = Component("attrs", true, {
       health: 100,
       mana: 100
