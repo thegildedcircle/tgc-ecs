@@ -7,7 +7,7 @@
     "build": "parcel build src/* --target node -d ECS --no-source-maps",
     "build:dev": "parcel build src/* --target node -d .dev",
     "test": "npm run build:dev && npx mocha ./tests --recursive",
-    "docs": "jsdoc src/* README.md -d docs -c jsdoc.config.js"
+    "docs": "rm -rf docs/ && jsdoc src/* README.md -d docs -c jsdoc.config.js && touch docs/.nojekyll"
   },
   "repository": {
     "type": "git",
