@@ -63,6 +63,7 @@ module.exports = (name, unique, defaults) => (init = {}) => {
  */
 class Component {
   /**
+   * @class Component Component
    * @param {string} name - The name of the Component type. This should be unique.
    * @param {bool} unique - Whether or not the Component is unique: whether more than
    * one instance of this Component can be stored on an Entity.

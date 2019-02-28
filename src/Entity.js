@@ -41,12 +41,14 @@
 module.exports = id => new Entity(id)
 
 /**
+ * 
  * @classdesc An Entity is simply an object with an id and a list of all the
  * components associated with it. The class has a number of methods for adding,
  * removing, and querying the components stored on it.
  */
 class Entity {
   /**
+   * @class Entity Entity
    * @param {string | number} id - The unique id of the Entity. Typically id
    * generation is delegated to the `ECS.Manager`, but if you are rolling your
    * own you will need to have some method of id generation: Date.now() is the most
