@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Entity - Documentation</title>
+    <title>Component - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,7 +29,7 @@
 
 <div id="main">
     
-    <h1 class="page-title">Entity</h1>
+    <h1 class="page-title">Component</h1>
     
 
     
@@ -41,8 +41,16 @@
 
 <header>
     
+        <h2>
+            <span class="ancestors"><a href="module-Component.html">Component</a>~</span>
         
-            
+        Component
+        </h2>
+        
+            <div class="class-description"><p>A Component encapsulates some piece of data. Components themselves
+don't typically have functionality attached to them like traditional classes,
+instead <code>Systems</code> are functions that manipulate the data stored in specific
+components.</p></div>
         
     
 </header>
@@ -51,38 +59,23 @@
     <div class="container-overview">
     
         
-            <div class="description"><p>Entities are the core of the ECS pattern. In this implementation
-entities store all the components associated to it in the components array. 
-There are a number of methods exposed to enable the addition, removal, and query
-of components on an entity.</p>
-<p>It is not common to create entities directly, instead delegating that to the
-ECS.Manager. Should you wish to use your own manager though, here is a brief
-example:</p>
-<pre class="prettyprint source lang-js"><code>const { Entity } = require('ECS')
-// Imaginary file that contains some components for our game
-const { HealthComponent, NameComponent, DamageComponent } = require('./components')
-
-// Construct a new entity, use the current POSIX time as the entity id.
-const player = Entity(Date.now())
-// Add components to the player
-player.addComponent(NameComponent({ value: 'Player One'}))
-player.addComponent(HealthComponent({ value: 100 }))
-player.addComponent(DamageComponent({ value: 50 }))
-
-player.hasComponent('name') // true
-player.getComponent('health') // { value: 100 }
-player.findComponents((c => c.state.value >= 50 )) // =>
-// [
-//   { name: 'health', unique: true, state: { value: 100 } },
-//   { name: 'damage', unique: false, state: { value: 50 } }
-// ]</code></pre></div>
-        
-
-        
-            
 <div class="section-method">
 
+    
+    <h2>Constructor</h2>
+    
 
+    <h4 class="name" id="Component"><span class="type-signature"></span>new Component<span class="signature">(name, unique, state)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Constructs a Component</p>
+<p><strong>Note:</strong> You cannot call <code>new Component()</code> directly, instead refer to the 
+<a href="module-Component.html">module:Component</a> documentation.</p>
+</div>
 
 
 
@@ -117,7 +110,7 @@ player.findComponents((c => c.state.value >= 50 )) // =>
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="Entity.js.html">Entity.js</a>, <a href="Entity.js.html#line1">line 1</a>
+        <a href="Component.js.html">Component.js</a>, <a href="Component.js.html#line64">line 64</a>
     </li></ul></dd>
     
 
@@ -161,16 +154,13 @@ player.findComponents((c => c.state.value >= 50 )) // =>
 
         <tr>
             
-                <td class="name"><code>id</code></td>
+                <td class="name"><code>name</code></td>
             
 
             <td class="type">
             
                 
 <span class="param-type"><code>string</code></span>
-|
-
-<span class="param-type"><code>number</code></span>
 
 
             
@@ -181,7 +171,67 @@ player.findComponents((c => c.state.value >= 50 )) // =>
             
 
             <td class="description last">
-                <p>The id of the entity.</p>
+                <p>The name of the Component type. This should be unique.</p>
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>unique</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>bool</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>Whether or not the Component is unique: whether more than
+one instance of this Component can be stored on an Entity.</p>
+                
+            </td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>state</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>Object</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>An object containing all the attributes relevant to
+the Component. Some best practices to follow:</p>
+<ul>
+<li><code>state</code> should be completely serialisable. Functions should <strong>never</strong> be
+stored on a Component.</li>
+<li>Try to keep <code>state</code> as flat as possible, if you find yourself nesting objects,
+there's a good chance you might want another Component instead.</li>
+</ul>
                 
             </td>
         </tr>
@@ -203,37 +253,9 @@ player.findComponents((c => c.state.value >= 50 )) // =>
 
 
 
-<div class="section-returns">
-<h5>Returns:</h5>
-
-        
-
-<dl class="param-type">
-    <dt>
-        Type:
-    </dt>
-    <dd>
-        
-<span class="param-type"><code>Entity</code></span>
-
-
-    </dd>
-</dl>
-
-
-<div class="param-desc">
-    <p>Returns a new entity object. Entities have an id property
-and a components property. Components is an array of all the <code>Component</code>s stored
-in that entity.</p>
-</div>
-
-    
-</div>
-
 
 
 </div>
-        
     
     </div>
 
@@ -242,13 +264,6 @@ in that entity.</p>
     
 
     
-        <h3 class="subsection-title">Classes</h3>
-
-        <dl>
-            <dt><a href="module-Entity-Entity.html">Entity</a></dt>
-            <dd></dd>
-        </dl>
-    
 
      
 
@@ -256,6 +271,150 @@ in that entity.</p>
 
     
 
+    
+        <h3 class="subsection-title">Methods</h3>
+
+        
+            
+<div class="section-method">
+
+    
+
+    <h4 class="name" id="update"><span class="type-signature"></span>update<span class="signature">(newState)</span><span class="type-signature"></span></h4>
+
+    
+
+
+
+<div class="description">
+    <p>Updates the component state, either partially or fully, the
+values in <code>newState</code>. Additional properties cannot be added to the Component
+by calling update and properties found in the Component state but not in <code>newState</code>
+are simply left unchanges.</p>
+</div>
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Component.js.html">Component.js</a>, <a href="Component.js.html#line98">line 98</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>newState</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>object</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>An object containing an updated version of this
+Components state. This can be partially filled if only some properties are
+updated.</p>
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</div>
+        
     
 
     
