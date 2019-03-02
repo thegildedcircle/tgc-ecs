@@ -1,8 +1,6 @@
-const {
-  expect
-} = require("chai");
+const { expect } = require("chai");
 
-const Component = require("../.dev/Component");
+const Component = require("../../.dev/Component");
 
 describe("Component test suite", () => {
   describe("Construction...", () => {
