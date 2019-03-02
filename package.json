@@ -30,5 +30,8 @@
     "hooks": {
       "pre-commit": "npm run test"
     }
+  },
+  "dependencies": {
+    "shortid": "^2.2.14"
   }
 }
