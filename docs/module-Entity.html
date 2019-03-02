@@ -3,7 +3,7 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Home - Documentation</title>
+    <title>Entity - Documentation</title>
 
     <script src="scripts/prettify/prettify.js"></script>
     <script src="scripts/prettify/lang-css.js"></script>
@@ -29,29 +29,241 @@
 
 <div id="main">
     
+    <h1 class="page-title">Entity</h1>
+    
 
     
 
 
 
+
+<section>
+
+<header>
+    
+        
+            
+        
+    
+</header>
+
+<article>
+    <div class="container-overview">
+    
+        
+            <div class="description"><p>Entities are the core of the ECS pattern. In this implementation
+entities store all the components associated to it in the components array. 
+There are a number of methods exposed to enable the addition, removal, and query
+of components on an entity.</p>
+<p>It is not common to create entities directly, instead delegating that to the
+ECS.Manager. Should you wish to use your own manager though, here is a brief
+example:</p>
+<pre class="prettyprint source lang-js"><code>const { Entity } = require('ECS')
+// Imaginary file that contains some components for our game
+const { HealthComponent, NameComponent, DamageComponent } = require('./components')
+
+// Construct a new entity, use the current POSIX time as the entity id.
+const player = Entity(Date.now())
+// Add components to the player
+player.addComponent(NameComponent({ value: 'Player One'}))
+player.addComponent(HealthComponent({ value: 100 }))
+player.addComponent(DamageComponent({ value: 50 }))
+
+player.hasComponent('name') // true
+player.getComponent('health') // { value: 100 }
+player.findComponents((c => c.state.value >= 50 )) // =>
+// [
+//   { name: 'health', unique: true, state: { value: 100 } },
+//   { name: 'damage', unique: false, state: { value: 50 } }
+// ]</code></pre></div>
+        
+
+        
+            
+<div class="section-method">
+
+
+
+
+
+
+
+<dl class="details">
+
     
 
-
-
-
-
-
-
-
+    
 
     
 
+    
 
-    <section class="readme">
-        <article><h1>tgc-ecs</h1></article>
-    </section>
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="Entity.js.html">Entity.js</a>, <a href="Entity.js.html#line1">line 1</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
 
 
+
+
+
+
+
+
+
+    <h5>Parameters:</h5>
+    
+
+<table class="params">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type"><code>string</code></span>
+|
+
+<span class="param-type"><code>number</code></span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last">
+                <p>The id of the entity.</p>
+                
+            </td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="section-returns">
+<h5>Returns:</h5>
+
+        
+
+<dl class="param-type">
+    <dt>
+        Type:
+    </dt>
+    <dd>
+        
+<span class="param-type"><code>Entity</code></span>
+
+
+    </dd>
+</dl>
+
+
+<div class="param-desc">
+    <p>Returns a new entity object. Entities have an id property
+and a components property. Components is an array of all the <code>Component</code>s stored
+in that entity.</p>
+</div>
+
+    
+</div>
+
+
+
+</div>
+        
+    
+    </div>
+
+    
+
+    
+
+    
+        <h3 class="subsection-title">Classes</h3>
+
+        <dl>
+            <dt><a href="module-Entity-Entity.html">Entity</a></dt>
+            <dd></dd>
+        </dl>
+    
+
+     
+
+    
+
+    
+
+    
+
+    
+
+    
+</article>
+
+</section>
 
 
 
