@@ -1,37 +1,38 @@
 const { expect } = require("chai");
 
 const Entity = require("../../.dev/Entity");
-const Component = require("../../.dev/Component");
+
+const mockID = Date.now();
+const mockEntity = Entity(mockID);
+
+const mockComponent = {
+  name: "attrs",
+  unique: true,
+  state: {
+    health: 100,
+    mana: 100
+  }
+};
 
 describe("Entity test suite", () => {
   describe("Construction...", () => {
-    const id = Date.now();
-    const TestEntity = Entity(id);
-
-    it(`Should have an id of ${id}`, () => {
-      expect(TestEntity.id).to.equal(id);
+    it(`Should have an id of ${mockID}`, () => {
+      expect(mockEntity.id).to.equal(mockID);
     });
   });
 
   describe("Updates...", () => {
-    const AttributeComponent = Component("attrs", true, {
-      health: 100,
-      mana: 100
-    });
-
-    const TestEntity = Entity(Date.now());
-
     it(`Should have an "attrs" component`, () => {
-      TestEntity.addComponent(AttributeComponent());
+      mockEntity.addComponent(mockComponent);
 
-      expect(TestEntity.hasComponent("attrs")).to.be.true;
+      expect(mockEntity.hasComponent("attrs")).to.be.true;
     });
 
     it(`Should only have 1 "attrs" component`, () => {
-      TestEntity.addComponent(AttributeComponent());
+      mockEntity.addComponent(mockComponent);
 
       expect(
-        TestEntity.findComponents(c => c.name === "attrs").length
+        mockEntity.findComponents(c => c.name === "attrs").length
       ).to.equal(1);
     });
   });
