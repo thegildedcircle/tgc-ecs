@@ -78,7 +78,7 @@ class Entity {
    */
   addComponent(component) {
     if (component.unique && this.hasComponent(component.name)) {
-      console.warn(`Attempting to add non-unique component "${component.name}" to entity when one already exists.`)
+      // console.warn(`Attempting to add non-unique component "${component.name}" to entity when one already exists.`)
     } else {
       this.components.push(component)
     }
