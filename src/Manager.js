@@ -101,10 +101,10 @@ module.exports = class Manager {
     switch (typeof system) {
       case "string":
         if (this.systems.hasOwnProperty(system))
-          this.systems[system].run(this.entities);
+          this.systems[system](this.entities);
         break;
       case "object":
-        system.run(this.entities);
+        system(this.entities);
         break;
     }
   }
