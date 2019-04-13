@@ -1,11 +1,11 @@
-const Entity = require("./ECS/Entity");
-const Component = require("./ECS/Component");
-const System = require("./ECS/System");
-const Manager = require("./ECS/Manager");
+const Entity = require("./src/Entity");
+const Component = require("./src/Component");
+const System = require("./src/System");
+const Manager = require("./src/Manager");
 
 module.exports = {
   Entity,
   Component,
   System,
-  Manager
+  Manager,
 };
